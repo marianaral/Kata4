@@ -12,12 +12,32 @@ public class Kata4 {
 
     
     public static void main(String[] args) {
-        String fileName = new String("email.txt");
-        List<Mail> mailList = MailHistogramReader.read(fileName);
-        Histogram<String> histogram = MailHistogramBuilder.build(mailList);
+        execute();
         
-        HistogramDisplay histogramDisplay = new HistogramDisplay("Histogram", histogram);
-        histogramDisplay.execute();
     }
+    
+        public static void execute(){
+            List<Mail> mailList = input();
+            Histogram histogram = process(mailList);
+            output(histogram);
+        }
+
+        public static List<Mail> input(){
+            String fileName = new String("email.txt");
+            List<Mail> mailList = MailHistogramReader.read(fileName);
+            return mailList;
+        }
+
+        public static Histogram process(List<Mail> mailList){
+            Histogram<String> histogram = MailHistogramBuilder.build(mailList);
+            return histogram;
+        }
+
+        public static void output(Histogram histogram){
+            HistogramDisplay histogramDisplay = new HistogramDisplay("Histogram", histogram);//o
+            histogramDisplay.execute();
+        }
+    
+    
     
 }
